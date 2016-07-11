@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<meta charset="utf-8"/>
+<title>Assign 3</title>
+<script src="countries.js"></script>
+<style>
+	body {
+		margin: auto;
+		border: 4px hotpink outset;
+		padding: 8px;
+		width: 600px;
+		text-align: center;
+		margin-top: 100px;
+		background-color: pink;
+	}
+	input {
+		width: 200px;
+	}
+</style>
+<script>
+		numCorrect = 0;
+		total = 0;
+		function selectCountry() {
+		var rndm = Math.floor(Math.random()*countries.length);
+		foo = countries[rndm].country;
+		foo = foo.charAt(0).toUpperCase() + foo.slice(1);
+		document.getElementById("tcountry").value = foo;
+		cap = countries[rndm].capitol;
+		countries.splice(rndm, 1);
+		if (countries.length === 0) {
+			document.getElementById("tcountry").value = "You have tried all the countries!";
+		}
+		}
+
+		function checkAnswer() {
+			var capital = document.getElementById("tcapitol");
+			if (!capital.value) {
+				alert("Please enter a capital");
+			}
+			else if (capital.value === cap) {
+				numCorrect++;
+				total++;
+				alert("Correct! Score: " +numCorrect+"/"+total);
+			}
+			else {
+				total++;
+				alert("Try again :( Score: " +numCorrect+"/"+total);
+			}
+		}
+</script>
+</head>
+<body>
+	<h1> Show me a country </h1>
+	<div id="form">
+	Country: 
+	<input type="text" id="tcountry"></input> 
+	<button id="countryButton" onclick="selectCountry()">Show Me a Country</button>
+	<br/><br/>
+
+	Capital:
+	<input type="text" id="tcapitol"></input>
+	<button id="capitalButton" onclick="checkAnswer()">Correct?</button>
+	<br/><br/>
+	</div>
+</body>
+</html>
